@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('users/index');
 });
 
 Route::resource('/users','UsersController');
+//会话管理
+Route::get('login', 'SessionController@login')->name('login');
+Route::post('login', 'SessionController@store')->name('login');
+Route::delete('logout', 'SessionController@destroy')->name('logout');

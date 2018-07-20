@@ -39,18 +39,18 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 @guest
-                <li><a href="">登录</a></li>
+                <li><a href="{{route('login')}}">登录</a></li>
                 @endguest
                 @auth
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户:  <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">编辑个人信息</a></li>
+                        <li><a href="#">修改密码</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <form method="post" action="">
+                            <form method="post" action="{{route('logout')}}">
                                 {{ csrf_field() }}{{ method_field('DELETE') }}
                                 <button class="btn btn-link">注销</button>
                             </form>

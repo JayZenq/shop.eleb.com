@@ -7,6 +7,7 @@ use App\Models\Shop_categories;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
 
 class UsersController extends Controller
@@ -68,15 +69,14 @@ class UsersController extends Controller
             'password.required'=>'请输入密码',
             'password.confirmed'=>'两次密码不一致',
         ]);
-
+        $file = $request->shop_img;
+        $fileName = $file->store(\Illuminate\Support\Facades\Storage::url('public/logo'));
         DB::beginTransaction();
         try{
-            $file = $request->shop_img;
-            $fileName = $file->store('public/logo');
             $shop= Shop::create([
                 'shop_category_id'=>$request->shop_category_id,
                 'shop_name'=>$request->shop_name,
-                'shop_img'=>$fileName,
+                'shop_img'=>url($fileName),
                 'shop_rating'=>4,
                 'brand'=>$request->brand,
                 'on_time'=>$request->on_time,
@@ -97,7 +97,6 @@ class UsersController extends Controller
                 'password'=>bcrypt($request->password),
                 'shop_id'=>$shop_id,
                 'status'=>0,
-                'rememberToken'=>null,
             ]);
 
             DB::commit();
