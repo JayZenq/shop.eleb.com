@@ -3,11 +3,11 @@
 @section('contents')
     <h2>修改密码</h2>
     @include('_errors')
-    <form action="{{route('update',[$admin])}}" class="form-horizontal"  method="post" >
+    <form action="{{route('updates',[$user])}}" class="form-horizontal"  method="post" >
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="用户名" name="name" value="{{$admin->name}}" readonly>
+                <input type="text" class="form-control" id="inputEmail3" placeholder="用户名" name="name" value="{{$user->name}}" readonly>
             </div>
         </div>
         <div class="form-group">

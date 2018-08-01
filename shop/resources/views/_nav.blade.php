@@ -14,10 +14,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">商家分类管理 <span class="sr-only">(current)</span></a></li>
+
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商家管理 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
                 <li><a href="">商家信息</a></li>
                 <li><a href="{{route('users.create')}}">商家注册</a></li>
                 <li><a href="">商品列表</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{{route('menucategories.index')}}">菜品分类管理 <span class="sr-only">(current)</span></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+                </ul>
+                </li>
+
+                <li><a href="{{route('order.index')}}">订单管理</a></li>
+                <li><a href="{{route('order.count')}}">订单量统计</a></li>
+                <li><a href="{{route('order.menu')}}">菜品销量统计</a></li>
                 {{--<li class="dropdown">--}}
                     {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>--}}
                     {{--<ul class="dropdown-menu">--}}
@@ -43,14 +57,14 @@
                 @endguest
                 @auth
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户:  <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户:  {{\Illuminate\Support\Facades\Auth::user()->name}}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">编辑个人信息</a></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="{{route('change',[\Illuminate\Support\Facades\Auth::user()])}}">修改密码</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <form method="post" action="{{route('logout')}}">
+                            <form method="post" action="{{route('logout',[\Illuminate\Support\Facades\Auth::user()])}}">
                                 {{ csrf_field() }}{{ method_field('DELETE') }}
                                 <button class="btn btn-link">注销</button>
                             </form>

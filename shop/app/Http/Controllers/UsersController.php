@@ -12,6 +12,12 @@ use Mockery\Exception;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except'=>['index','create'],
+        ]);
+    }
     //
     public function index()
     {
