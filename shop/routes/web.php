@@ -46,3 +46,6 @@ Route::get('/order_month', 'OrdersController@month')->name('order.month');
 Route::get('/order_day', 'OrdersController@day')->name('order.day');
 Route::get('/order_menu', 'OrdersController@menu')->name('order.menu');
 Route::get('/order_menum', 'OrdersController@menu_month')->name('order.menu_month');
+
+//抽奖活动的资源路由
+Route::resource('/event','EventsController');
